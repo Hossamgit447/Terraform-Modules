@@ -22,4 +22,5 @@ variable "private_subnet_ids" {
 variable "node_role_arn" {
   description = "node role arn"
   type = string
+  default = null
 }
