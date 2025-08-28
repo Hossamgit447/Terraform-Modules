@@ -19,3 +19,7 @@ variable "private_subnet_ids" {
   type        = list(string)
   default     = []
 }
+variable "node_role_arn" {
+  description = "node role arn"
+  type = string
+}
