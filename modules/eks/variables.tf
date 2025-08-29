@@ -2,6 +2,7 @@
 variable "cluster_role_arn" {
   description = "IAM Role ARN for the EKS cluster (must have eks.amazonaws.com trust relationship)"
   type        = string
+  default = null
 }
 
 variable "public_subnet_ids" {
