@@ -37,6 +37,7 @@ variable "subnet_ids" {
 }
 variable "desired_size" {
   type        = number
+  default = null
 }
 variable "min_size" {
   type        = number
