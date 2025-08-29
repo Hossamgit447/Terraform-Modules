@@ -1,7 +1,3 @@
-variable "env" {
-  description = "Environment name (e.g., dev, staging, prod)"
-  type        = string
-}
 
 variable "cluster_role_arn" {
   description = "IAM Role ARN for the EKS cluster (must have eks.amazonaws.com trust relationship)"
@@ -46,5 +42,5 @@ variable "max_size" {
   type        = number
 }
 variable "instance_types" {
-  type = list()
+  type = list(string)
 }
