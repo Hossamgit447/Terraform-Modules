@@ -29,19 +29,24 @@ variable "node_role_arn" {
 
 variable "cluster_name" {
   type        = string
+  default = null
 }
 variable "subnet_ids" {
   type        = list(string)
+  default = null
 }
 variable "desired_size" {
   type        = number
 }
 variable "min_size" {
   type        = number
+  default = null
 }
 variable "max_size" {
   type        = number
+  default = null
 }
 variable "instance_types" {
   type = list(string)
+  default = null
 }
