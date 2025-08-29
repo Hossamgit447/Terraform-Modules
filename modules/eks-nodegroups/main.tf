@@ -2,7 +2,7 @@ resource "aws_eks_node_group" "this" {
   cluster_name    = var.cluster_name
   node_group_name = "${var.env}-eks-node-group"
   node_role_arn   = var.node_role_arn
-  subnet_ids      = var.private_subnet_ids
+  subnet_ids      = var.subnet_ids
 
   scaling_config {
     desired_size = var.desired_size
@@ -11,8 +11,6 @@ resource "aws_eks_node_group" "this" {
   }
 
   instance_types = var.instance_types
-
-
 
   tags = {
     Name = "${var.env}-eks-node-group"

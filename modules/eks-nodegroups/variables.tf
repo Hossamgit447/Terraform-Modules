@@ -5,7 +5,7 @@ variable "env" {
 }
 
 
-variable "private_subnet_ids" {
+variable "subnet_ids" {
   description = "List of private subnet IDs where EKS cluster resources can be placed"
   type        = list(string)
   default     = []
