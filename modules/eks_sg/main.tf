@@ -16,7 +16,7 @@ resource "aws_security_group" "eks_sg" {
     cidr_blocks = ["0.0.0.0/0"]
     description = "Allow all outbound egress trafic"
     from_port   = 0
-    to_port     = 65535
+    to_port     = 0
     protocol    = "All"
   }
 
