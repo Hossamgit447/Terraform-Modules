@@ -29,3 +29,6 @@ variable "subnet_ids" {
   type        = list(string)
   default = null
 }
+variable "eks_security_group_ids" {
+ type        = list(string)
+}
