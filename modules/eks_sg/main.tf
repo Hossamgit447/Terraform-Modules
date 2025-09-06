@@ -1,7 +1,7 @@
 resource "aws_security_group" "eks_sg" {
   name        = "${var.env}-sg"
   description = "Extra SG for ${var.env} EKS workloads"
-  vpc_id      = module.network.vpc_id   # or however you expose the VPC ID from your network module
+  vpc_id      = var.vpc_id  # or however you expose the VPC ID from your network module
 
   # Example inbound rule (allow HTTP from anywhere)
   ingress {
