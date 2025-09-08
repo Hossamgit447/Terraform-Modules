@@ -1,11 +1,10 @@
 resource "aws_eip" "nat" {
-  vpc = true
   tags = { Name = "${var.env}-nat-eip" }
 }
 
 resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.nat.id
-  subnet_id     = var.public_subnet_ids
+  subnet_id     = element(var.public_subnet_ids, 0)
   tags          = { Name = "${var.env}-nat" }
 }
 
