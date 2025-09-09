@@ -54,3 +54,30 @@ resource "aws_iam_role_policy_attachment" "eks_node_AmazonEKS_CNI_Policy" {
   policy_arn = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
   role       = aws_iam_role.eks_node_role.name
 }
+
+# IAM Policy for ALB Controller
+data "aws_iam_policy_document" "alb_controller" {
+  statement {
+    actions   = ["sts:AssumeRoleWithWebIdentity"]
+    effect    = "Allow"
+    principals {
+      type        = "Federated"
+      identifiers = [var.oidc_provider_arn]
+    }
+    condition {
+      test     = "StringEquals"
+      variable = "${replace(var.oidc_provider_arn, "arn:aws:iam::", "")}:sub"
+      values   = ["system:serviceaccount:kube-system:aws-load-balancer-controller"]
+    }
+  }
+}
+
+resource "aws_iam_role" "alb_controller" {
+  name               = "${var.env}-alb-controller"
+  assume_role_policy = data.aws_iam_policy_document.alb_controller.json
+}
+
+resource "aws_iam_role_policy_attachment" "alb_controller" {
+  role       = aws_iam_role.alb_controller.name
+  policy_arn = "arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy"
+}
