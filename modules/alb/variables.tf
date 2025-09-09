@@ -5,5 +5,6 @@ variable "env" {
   type = string
 }
 variable "oidc_provider_arn" {
-  type = string
+  description = "The OIDC provider ARN for the EKS cluster"
+  type        = string
 }
