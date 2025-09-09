@@ -81,3 +81,8 @@ resource "aws_iam_role_policy_attachment" "alb_controller" {
   role       = aws_iam_role.alb_controller.name
   policy_arn = "arn:aws:iam::aws:policy/AWSLoadBalancerControllerIAMPolicy"
 }
+resource "aws_iam_openid_connect_provider" "this" {
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = [data.aws_eks_cluster.this.certificate_authority[0].data]
+  url             = data.aws_eks_cluster.this.identity[0].oidc[0].issuer
+}
